@@ -1,13 +1,13 @@
 ﻿// Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
 
-int GetParam(string partsMessage)
+int GetParam(string partsMessage, string nameMatrix)
 {
-    Console.Write($"Введите количество {partsMessage}: ");
+    Console.Write("Введите количество {0} матрицы {1}: ", partsMessage, nameMatrix);
     return Convert.ToInt32(Console.ReadLine());
 }
-int rowCountA = GetParam("строк матрицы А");
-int columnCountA = GetParam("столбцов матрицы А");
-int columnCountB = GetParam("столбцов матрицы В");
+int rowCountA = GetParam("строк",   "А");
+int columnCountA = GetParam("столбцов", "А");
+int columnCountB = GetParam("столбцов",  "В");
 
 int[,] matrixA = new int[rowCountA, columnCountA];
 int[,] matrixB = new int[columnCountA, columnCountB];
@@ -68,7 +68,7 @@ PrintArray(matrixA);
 
 Console.WriteLine("Матрица B[{0}, {1}]:", matrixB.GetLength(0), matrixB.GetLength(1));
 PrintArray(matrixB);
-Console.WriteLine("Матрица А * Матрицу B [{0}, {1}]:", matrixA.GetLength(0), matrixB.GetLength(1));
+Console.WriteLine("А * B [{0}, {1}]:", matrixA.GetLength(0), matrixB.GetLength(1));
 PrintArray(FillMatrixMultiple(matrixA,  matrixB));
 
 
