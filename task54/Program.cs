@@ -37,7 +37,7 @@ int FindRowMaxValueIndex(int[,] array, int rowIndex, int startIndex)
 {
     int maxValueIndex = startIndex;
     int maxValue = array[rowIndex, startIndex];
-    for (int i = startIndex; i < array.GetLength(1); i++)
+    for (int i = startIndex + 1; i < array.GetLength(1); i++)
     {
         if(array[rowIndex, i] > maxValue)
         {
