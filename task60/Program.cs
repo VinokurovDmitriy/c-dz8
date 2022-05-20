@@ -16,20 +16,16 @@ void ConsoleElement3DArray(int[,,] array)
 
 int GetUniqueNumber(int[,,] array)
 {
-    int deep = array.GetLength(0);
-    int rowCount = array.GetLength(1);
-    int columnCount = array.GetLength(2);
-    int elementsCount = rowCount * columnCount * deep;
-    int r = new Random().Next(-elementsCount, elementsCount + 1);
-    for (int i = 0; i < deep; i++)
+    int r = new Random().Next(10, 101);
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-        for (int j = 0; j < rowCount; j++)
+        for (int j = 0; j < array.GetLength(1); j++)
         {
-            for (int k = 0; k < columnCount; k++)
+            for (int k = 0; k < GetLength(2); k++)
             {
                 if (array[i, j, k] == r)
                 {
-                    GetUniqueNumber(array);
+                    r = GetUniqueNumber(array);
                 }
             }
         }
@@ -45,20 +41,20 @@ void Fill3DArray(int[,,] array)
         {
             for (int k = 0; k < array.GetLength(2); k++)
             {
-                array[i, j, k] = GetUniqueNumber(array);   
+                array[i, j, k] = GetUniqueNumber(array);
             }
         }
     }
 }
 
-int GetParamsArray(string partsMessage)
+int GetParam(string partsMessage)
 {
     Console.Write($"Введите {partsMessage}: ");
     return Convert.ToInt32(Console.ReadLine());
 }
-int deep = GetParamsArray("глубину массива");
-int rowCount = GetParamsArray("количество строк");
-int columnCount = GetParamsArray("количество столбцов");
+int deep = GetParam("глубину массива");
+int rowCount = GetParam("количество строк");
+int columnCount = GetParam("количество столбцов");
 int[,,] array3D = new int[deep, rowCount, columnCount];
 
 Fill3DArray(array3D);
