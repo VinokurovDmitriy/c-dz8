@@ -1,12 +1,12 @@
 ﻿// Заполните спирально массив 4 на 4.
-int GetParamsArray(string partsMessage)
+int GetParams(string partsMessage)
 {
     Console.Write($"Введите количество {partsMessage}: ");
     return Convert.ToInt32(Console.ReadLine());
 }
 
-int rowCount = GetParamsArray("строк");
-int columnCount = GetParamsArray("столбцов");
+int rowCount = GetParams("строк");
+int columnCount = GetParams("столбцов");
 int[,] array = new int[rowCount, columnCount];
 void PrintArray(int[,] array)
 {
@@ -32,7 +32,6 @@ void FillRows(int[,] array)
     while (rowCount > 0)
     {
         int startValueBottomRow = startValue + (endColumn - startColumn) * 2 + (endRow - startRow);
-        Console.WriteLine(startValueBottomRow);
         for (int i = startColumn; i <= endColumn; i++)
         {
             array[startRow, i] = startValue;
@@ -49,32 +48,28 @@ void FillRows(int[,] array)
     }
 }
 
-void FillColumn(int[,] array)
+void FillColumns(int[,] array)
 {
-    int leftColumn = 0;
-    int rightColumn = array.GetLength(1) - 1;
-    int startRow = 1;
-    int endRow = array.GetLength(0) - 2;
-    while ((endRow - startRow) >= 2)
+    int leftColumnIndex = 0;
+    int startRowIndex = 1;
+    int lastRow = array.GetLength(0) - 1;
+    while (array[startRowIndex, leftColumnIndex] == 0)
     {
-    int startValue = array[startRow - 1, rightColumn] + 1;
-    int startLeftValue = array[endRow + 1, leftColumn] + 1;
-        for (int i = startRow; i <= endRow; i++)
+        int rightColumnIndex = array.GetLength(1) - 1 - leftColumnIndex;
+        int lastRowIndex = array.GetLength(0) - startRowIndex;
+        int leftNum = array[lastRowIndex, leftColumnIndex] + lastRowIndex - startRowIndex + 1;
+        Console.WriteLine($"{array[lastRowIndex, leftColumnIndex]} {lastRowIndex} {startRowIndex}");
+        int rightNum = array[startRowIndex - 1, rightColumnIndex];
+        for (int i = startRowIndex; i < lastRowIndex; i++)
         {
-            array[i, rightColumn] = startValue;
-            array[endRow - i + 1, leftColumn] = startLeftValue;
-            startValue++;
-            startLeftValue++;
+            array[i, rightColumnIndex] = ++rightNum;
+            array[i, leftColumnIndex] = --leftNum;
         }
-        endRow--;
-        startRow++;
-        rightColumn--;
-        leftColumn++;
+        startRowIndex ++;
+        leftColumnIndex ++;
     }
-
 }
 
-
 FillRows(array);
-FillColumn(array);
+FillColumns(array);
 PrintArray(array);
