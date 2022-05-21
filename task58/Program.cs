@@ -5,7 +5,7 @@ int GetParam(string partsMessage, string nameMatrix)
     Console.Write("Введите количество {0} матрицы {1}: ", partsMessage, nameMatrix);
     return Convert.ToInt32(Console.ReadLine());
 }
-int rowCountA = GetParam("строк",   "А");
+int rowCountA = GetParam("строк ", " A и количество стлбцов матрицы В");
 int columnCountA = GetParam("столбцов", "А");
 int columnCountB = GetParam("столбцов",  "В");
 
@@ -68,6 +68,7 @@ PrintArray(matrixA);
 
 Console.WriteLine("Матрица B[{0}, {1}]:", matrixB.GetLength(0), matrixB.GetLength(1));
 PrintArray(matrixB);
+
 Console.WriteLine("А * B [{0}, {1}]:", matrixA.GetLength(0), matrixB.GetLength(1));
 PrintArray(FillMatrixMultiple(matrixA,  matrixB));
 
