@@ -58,7 +58,6 @@ void FillColumns(int[,] array)
         int rightColumnIndex = array.GetLength(1) - 1 - leftColumnIndex;
         int lastRowIndex = array.GetLength(0) - startRowIndex;
         int leftNum = array[lastRowIndex, leftColumnIndex] + lastRowIndex - startRowIndex + 1;
-        Console.WriteLine($"{array[lastRowIndex, leftColumnIndex]} {lastRowIndex} {startRowIndex}");
         int rightNum = array[startRowIndex - 1, rightColumnIndex];
         for (int i = startRowIndex; i < lastRowIndex; i++)
         {
