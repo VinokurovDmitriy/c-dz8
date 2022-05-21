@@ -16,12 +16,12 @@ void ConsoleElement3DArray(int[,,] array)
 
 int GetUniqueNumber(int[,,] array)
 {
-    int r = new Random().Next(10, 101);
+    int r = new Random().Next(10, 100);
     for (int i = 0; i < array.GetLength(0); i++)
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            for (int k = 0; k < GetLength(2); k++)
+            for (int k = 0; k < array.GetLength(2); k++)
             {
                 if (array[i, j, k] == r)
                 {
@@ -52,9 +52,19 @@ int GetParam(string partsMessage)
     Console.Write($"Введите {partsMessage}: ");
     return Convert.ToInt32(Console.ReadLine());
 }
-int deep = GetParam("глубину массива");
-int rowCount = GetParam("количество строк");
-int columnCount = GetParam("количество столбцов");
+bool correctParams = false;
+Console.WriteLine("Введите параметры массива. Произведение параметров не должно превышать 89");
+int deep = 0, rowCount = 0, columnCount = 0;
+while (!correctParams)
+{
+    deep = GetParam("глубину массива");
+    rowCount = GetParam("количество строк");
+    columnCount = GetParam("количество столбцов");
+    if (deep * rowCount * columnCount < 90)
+        correctParams = true;
+        else
+        Console.WriteLine("Вы ввели некорректные значения. Повторите ввод");
+}
 int[,,] array3D = new int[deep, rowCount, columnCount];
 
 Fill3DArray(array3D);
