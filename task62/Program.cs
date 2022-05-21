@@ -23,14 +23,13 @@ void PrintArray(int[,] array)
 void FillRows(int[,] array)
 {
     int startColumn = 0;
-    int endColumn = array.GetLength(1) - 1;
     int startRow = 0;
-    int endRow = array.GetLength(0) - 1;
     int startValue = 1;
     int rowCount = array.GetLength(0);
-
     while (rowCount > 0)
     {
+        int endRow = array.GetLength(0) - 1 - startRow;
+        int endColumn = array.GetLength(1) - 1 - startColumn;
         int startValueBottomRow = startValue + (endColumn - startColumn) * 2 + (endRow - startRow);
         for (int i = startColumn; i <= endColumn; i++)
         {
@@ -42,9 +41,7 @@ void FillRows(int[,] array)
         startValue = startValue + endColumn - startColumn - 1 + (endRow - startRow) * 2;
         rowCount -= 2;
         startRow++;
-        endRow--;
         startColumn++;
-        endColumn--;
     }
 }
 
