@@ -33,21 +33,16 @@ void FillRandomIntArray(int[,] arr)
 
 int FindIndexMinSumRow(int[,] array)
 {
-    int minSum = array[0, 0];
+    int minSum = Int32.MaxValue;
     int indexMinRow = 0;
     for (int i = 0; i < array.GetLength(0); i++)
     {
         int sumRow = array[i, 0];
-        for (int j = 0; j < array.GetLength(1); j++)
+        for (int j = 1; j < array.GetLength(1); j++)
         {
             sumRow += array[i, j];
         }
-        if (i == 0)
-        {
-            minSum = sumRow;
-
-        }
-        else if (minSum > sumRow)
+        if (minSum > sumRow)
         {
             minSum = sumRow;
             indexMinRow = i;
